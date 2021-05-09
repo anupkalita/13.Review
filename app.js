@@ -48,13 +48,16 @@ const prev = document.querySelector('#prev');
 const next = document.querySelector('#next');
 const random = document.querySelector('#random');
 
-
-//   IIFE
-(function () {
+function changeContent(){
     img.src = reviews[index].img;
     personName.textContent = reviews[index].name;
     job.textContent = reviews[index].job;
     info.textContent = reviews[index].text;
+}
+
+//   IIFE
+(function () {
+    changeContent();
 })();
 
 // Prev
@@ -64,10 +67,7 @@ prev.addEventListener('click', function () {
     }
     else {
         index--;
-        img.src = reviews[index].img;
-        personName.textContent = reviews[index].name;
-        job.textContent = reviews[index].job;
-        info.textContent = reviews[index].text;
+        changeContent();
     }
 });
 
@@ -78,18 +78,12 @@ next.addEventListener('click', function () {
     }
     else {
         index++;
-        img.src = reviews[index].img;
-        personName.textContent = reviews[index].name;
-        job.textContent = reviews[index].job;
-        info.textContent = reviews[index].text;
+        changeContent();
     }
 });
 
 // Random
 random.addEventListener('click', function () {
     index = Math.floor(Math.random() * reviews.length);
-    img.src = reviews[index].img;
-    personName.textContent = reviews[index].name;
-    job.textContent = reviews[index].job;
-    info.textContent = reviews[index].text;
+    changeContent();
 });
